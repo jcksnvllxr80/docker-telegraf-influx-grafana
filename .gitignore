@@ -1,2 +1,3 @@
 influxdb/data/meta/meta.db
+influxdb/telegraf.conf
 grafana/data/grafana.db
