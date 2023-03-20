@@ -10,13 +10,13 @@ services:
     restart: always
     networks: 
       - metrics
-    # user: "1000" # needs to be `id -u` // alternatively chown the grafana/data dir to 472:472
+    user: "1000" # needs to be `id -u` // alternatively chown the grafana/data dir to 472:472
     ports:
       - "3000:3000" # expose for localhost
     volumes:
-      - /home/pi/docker/grafana/data:/var/lib/grafana # data path
-      - /home/pi/docker/grafana/grafana.ini:/etc/grafana/grafana.ini
-      - /home/pi/docker/grafana/provisioning:/etc/grafana/provisioning
+      - /home/aaron/docker/grafana/data:/var/lib/grafana # data path
+      - /home/aaron/docker/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - /home/aaron/docker/grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
       - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
@@ -30,9 +30,9 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - /home/pi/docker/influxdb/data:/var/lib/influxdb
-      - /home/pi/docker/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
-      - /home/pi/docker/influxdb/init:/docker-entrypoint-initdb.d
+      - /home/aaron/docker/influxdb/data:/var/lib/influxdb
+      - /home/aaron/docker/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+      - /home/aaron/docker/influxdb/init:/docker-entrypoint-initdb.d
     environment:
       - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME} # sourced from .env
       - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD} # sourced from .env
@@ -45,7 +45,7 @@ services:
     networks: 
       - metrics
     volumes:
-      - /home/pi/docker/influxdb/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /home/aaron/docker/influxdb/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   chronograf:
     container_name: chronograf
     restart: always

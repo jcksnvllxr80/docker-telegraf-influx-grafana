@@ -1,4 +1,5 @@
 influxdb/data/meta/meta.db
+influxdb/data/data
 influxdb/telegraf.conf
 grafana/data/grafana.db
 grafana/data/plugins
